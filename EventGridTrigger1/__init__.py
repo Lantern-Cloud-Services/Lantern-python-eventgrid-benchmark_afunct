@@ -42,10 +42,17 @@ def main(event: func.EventGridEvent):
     # get the keys for this run
     keys = r.keys(str(run_num) + '*')
 
-#    vals = []
-#    for reskey in keys:
-#        val = r.get(reskey)
-#        vals.append(int(val.decode("utf-8")))
+    if len(keys) == total:
+        vals = []
+        for reskey in keys:
+            val = r.get(reskey)
+            vals.append(int(val.decode("utf-8")))
+            r.delete(reskey)    
+        
+        logging.warn("###### TOTAL: " + sum(vals) + " ######")
+        
+
+    
 
 
 
