@@ -43,7 +43,7 @@ def main(event: func.EventGridEvent):
     # get the keys for this run
     keys = r.keys(str(run_num) + '*')
 
-    if len(keys) == total:
+    if len(keys) == int(total):
         vals = []
         for reskey in keys:
             val = r.get(reskey)
