@@ -44,10 +44,12 @@ def main(event: func.EventGridEvent):
     keys = r.keys(str(run_num) + '*')
 
     if len(keys) == int(total):
+        logging.warn("All records received")
         vals = []
         for reskey in keys:
-            val = r.get(reskey)
-            vals.append(int(val.decode("utf-8")))
+            val = r.get(reskey).decode("utf-8")
+            logging.warn("Got val : " + val)
+            vals.append(int(val))
             r.delete(reskey)    
         
         total_result = sum(vals)
