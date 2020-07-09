@@ -1,6 +1,7 @@
 import json
 import logging
 import redis
+import requests
 import os
 
 
@@ -49,7 +50,13 @@ def main(event: func.EventGridEvent):
             vals.append(int(val.decode("utf-8")))
             r.delete(reskey)    
         
-        logging.warn("###### TOTAL: " + sum(vals) + " ######")
+        total_result = sum(vals)
+        logging.warn("###### TOTAL: " + total_result + " ######")
+
+        # push total to display function
+        result_host = os.environ.get("resulthost")
+        r = requests.post(result_host + "?run=" + str(run_num) + "&total=" + str(total_result))
+
         
 
     
