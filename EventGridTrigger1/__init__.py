@@ -40,7 +40,7 @@ def main(event: func.EventGridEvent):
     record_key = str(run_num) + "-" + str(eventid)
     r.set(record_key, val)    
 
-    # get the keys for this run
+    '''# get the keys for this run
     keys = r.keys(str(run_num) + '*')
 
     if len(keys) == int(total):
@@ -57,7 +57,7 @@ def main(event: func.EventGridEvent):
 
         # push total to display function
         result_host = os.environ.get("resulthost")
-        r = requests.post(result_host + "?run=" + str(run_num) + "&total=" + str(total_result))
+        r = requests.post(result_host + "?run=" + str(run_num) + "&total=" + str(total_result))'''
 
         
 
